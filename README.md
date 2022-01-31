@@ -13,12 +13,10 @@ To guide eBook authors having a better sense of the workflow layout, here we bri
 
 
 ## R packages required
+R version 4.1.1 (2021-08-10)
 
-- __Required software and versions__: 
-    - [FastQC v0.11.9](http://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc)
-    - [multiqc](https://github.com/ewels/MultiQC)
-    - [R 3.6.3](https://cran.r-project.org/) for results ploting
-        - [RStudio 1.4](https://rstudio.com/), [ggplot2 3.3.3](https://cran.r-project.org/web/packages/ggplot2/index.html), [tidyr 1.1.2](https://github.com/tidyverse/tidyr)
+- __Required R packages and versions__: 
+    - [ggplot2 3.3.3](https://cran.r-project.org/web/packages/ggplot2/index.html), [dplyr 1.0.7](https://dplyr.tidyverse.org/), [GEOquery 2.60.0](https://www.bioconductor.org/packages/release/bioc/html/GEOquery.html), [DESeq2 1.32.0](https://bioconductor.org/packages/release/bioc/html/DESeq2.html), [edgeR 3.34.0](https://bioconductor.org/packages/release/bioc/html/edgeR.html), [limma 3.48.0](https://bioconductor.org/packages/release/bioc/html/limma.html), [pheatmap 1.0.12](https://cran.r-project.org/web/packages/pheatmap/index.html), [Glimma 2.2.0](https://bioconductor.org/packages/release/bioc/html/Glimma.html), [readr 1.4.0](https://readr.tidyverse.org/)
 
 
 ## Input Data
