@@ -1,6 +1,6 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
-# Data, Code and Workflows Guideline
+# Differential Expression Analysis: Simple pair, Interaction, Time-series![image](https://user-images.githubusercontent.com/26860242/151862683-eb5cd72a-861b-4b4f-b534-c4be3076467f.png)
 
 To guide eBook authors having a better sense of the workflow layout, here we briefly introduce the specific purposes of the dir system. 
 
