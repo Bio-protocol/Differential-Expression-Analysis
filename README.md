@@ -1,13 +1,13 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
-# Differential Expression Analysis: Simple pair, Interaction, Time-series![image](https://user-images.githubusercontent.com/26860242/151862683-eb5cd72a-861b-4b4f-b534-c4be3076467f.png)
+# Differential Expression Analysis: Simple pair, Interaction, Time-series
+
 
 To guide eBook authors having a better sense of the workflow layout, here we briefly introduce the specific purposes of the dir system. 
 
-
-1. __cache__: Here, it stores intermediate datasets or results that are generated during the preprocessing steps.
+1. __cache__: Here, it stores R codes for preprocessing Arabidopsis raw time course data.
 2. __graphs__: The graphs/figures produced during the analysis.
-3. __input__: Here, we store the raw input data. Data size > 100M is not allowed. We recommend using small sample data for the illustration purpose of the workflow. If you have files > 100M, please contact the chapter editor to find a solution. 
+3. __input__: Here, we store the raw input data, including both for simple pair DGE and time course analysis . 
 4. __lib__: The source code, functions, or algorithms used within the workflow.
 5. __output__: The final output results of the workflow.
 6. __workflow__: Step by step pipeline. It may contain some sub-directories. 
