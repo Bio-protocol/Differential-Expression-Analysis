@@ -8,12 +8,9 @@ To guide eBook authors having a better sense of the workflow layout, here we bri
 1. __cache__: Here, it stores R codes for preprocessing Arabidopsis raw time course data.
 2. __graphs__: The graphs/figures produced during the analysis.
 3. __input__: Here, we store the raw input data, including both for simple pair DGE and time course analysis . 
-4. __lib__: The source code, functions, or algorithms used within the workflow.
-5. __output__: The final output results of the workflow.
-6. __workflow__: Step by step pipeline. It may contain some sub-directories. 
-    - It is suggested to use __a numbering system__ and __keywords__ to indicate the order and the main purpose of the scripts, i.e., `1_fastq_quality_checking.py`, `2_cleaned_reads_alignment.py`.
-    - To ensure reproducibility, please use the __relative path__ within the `workflow`.
-7. __README__: In the readme file, please briefly describe the purpose of the repository, the installation, and the input data format. 
+4. __output__: The final output results of the workflow, including all DE genes and significant DE genes of the three DGE methods.
+5. __workflow__: Step by step pipeline for DGE and time course analysis. 
+6. __README__: In the readme file, please briefly describe the purpose of the repository, the installation, and the input data format. 
     - We recommend using a diagram to describe the workflow briefly.
     - Provide the installation details.
     - Show a small proportion of the input data unless the data file is in a well-known standard format, i.e., the `head` or `tail` of the input data.
