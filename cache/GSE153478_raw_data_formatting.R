@@ -71,7 +71,7 @@ head(counts)
 class(counts)
 str(counts)
 
-setwd('~/bigdata/DEG/')
+setwd('~/path/to/folder/DEG/')
 save(arab_time, file="arab_time.RData")
 load(file = 'arab_time.RData')
 
