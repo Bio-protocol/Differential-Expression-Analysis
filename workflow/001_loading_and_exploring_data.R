@@ -17,8 +17,8 @@ library(readr)
 url <- "http://bioinf.wehi.edu.au/edgeR/UserGuideData/arab.rds"
 
 # Specify destination where file should be saved
-setwd("~/bigdata/DEG/")
-destfile <- "~/bigdata/DEG/arab.rds"
+setwd("~/path/to/project/DEG/")
+destfile <- "~/path/to/arab.rds"
 
 # Apply download.file function in R
 download.file(url, destfile)
