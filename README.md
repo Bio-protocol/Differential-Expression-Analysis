@@ -21,11 +21,11 @@ R version 4.1.1 (2021-08-10)
 
 
 ## Input Data
-- __Case study 1: A comparison of three methods for DGE analysis
+- __Case study 1: A comparison of three methods for DGE analysis__
 
 To demonstrate, here we use the Arabidopsis thaliana RNA-Seq data published by Cumbie et al., (Cumbie et al., 2011). Summarized count data is available as an R dataset, and readers can download the data from the input folder (arab.rds). In Cumbie’s experiment, they inoculate six-week-old Arabidopsis plants with the mutant of P.syringae. Control plants were inoculated with a mock pathogen. Each treatment was done as biological triplicates, with each pair of replicates done at separate times and derived from independently grown plants and bacteria.
 
-- __Case study 2: Time course analysis
+- __Case study 2: Time course analysis__
 
 Here we demonstrate a fundamental time course analysis with an Arabidopsis dataset containing gene counts for an RNA-seq time course. This experiment aims to see if the differentiated endodermal cells have a distinct transcriptional response to auxin treatment. They performed a time series of 10µM NAA treatment and sample at t= 0, 2, 4, 8, 16, and 24hrs after NAA treatment (Ursache et al., 2021). For the time series, they compared roots of the solitary root 1 (slr-1) mutant to the CASP1::shy2-2/slr-1 double mutant. The raw data from the NCBI database (Ursache et al., 2021) was processed and saved as a RangedSummarizeExperiment RData file. The processed data can be downloaded from the input folder (arab_time.Rdata).
 
@@ -61,14 +61,14 @@ Rscript workflow/004_DGE_edgeR.R
 Rscript workflow/005_DGE_limma_voom.R
 ```
 
-#### Step 6: time course analysis
+#### Step 6: Time course analysis
 
 ```
 Rscript workflow/006_time_course.R
 ```
 ## Expected results
 
-A several examples of outputs:
+Expected results are stored in output and graphs folders. A several examples of outputs:
 
 ![PCA plot](graphs/pca.pdf)
 ![MA plot](graphs/maplot.pdf)
