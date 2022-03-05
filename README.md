@@ -73,7 +73,7 @@ source('workflow/006_time_course.R')
 Expected results are stored in output and graphs folders. A several examples of outputs:
 
 ![comparison of genes](graphs/15abc.png)
-![MA plot](graphs/maplot.pdf)
+![more comparison](graphs/abc.png)
 
 ## License
 It is a free and open source software, licensed under []() [GPLv3](https://github.com/github/choosealicense.com/blob/gh-pages/_licenses/gpl-3.0.txt).
