@@ -36,37 +36,37 @@ Here we demonstrate a fundamental time course analysis with an Arabidopsis datas
 #### Step 1: Download and explore RNA-seq data
 
 ```
-Rscript workflow/001_loading_and_exploring_data.R
+source('workflow/001_loading_and_exploring_data.R')
 ```
 
 #### Step 2: Quality control
 
 ```
-Rscript workflow/002_quality_control.R
+source('workflow/002_quality_control.R')
 ```
 
 #### Step 3: DGE analysis--DESeq2
 
 ```
-Rscript workflow/003_DGE_DESeq2.R
+source('workflow/003_DGE_DESeq2.R')
 ```
 
 #### Step 4: DGE analysis--edgeR
 
 ```
-Rscript workflow/004_DGE_edgeR.R
+source('workflow/004_DGE_edgeR.R')
 ```
 
 #### Step 5: DGE analysis--limma voom
 
 ```
-Rscript workflow/005_DGE_limma_voom.R
+source('workflow/005_DGE_limma_voom.R')
 ```
 
 #### Step 6: Time course analysis
 
 ```
-Rscript workflow/006_time_course.R
+source('workflow/006_time_course.R')
 ```
 ## Expected results
 
