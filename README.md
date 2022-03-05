@@ -12,6 +12,8 @@ To guide eBook authors having a better sense of the workflow layout, here we bri
 4. __output__: The final output results of the workflow, including all DE genes and significant DE genes of the three DGE methods.
 5. __workflow__: Step by step pipeline for DGE and time course analysis. 
 
+## Workflow
+![workflow](workflow/workflow.png)
 
 ## R packages required
 R version 4.1.1 (2021-08-10)
