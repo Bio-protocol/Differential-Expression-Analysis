@@ -78,6 +78,7 @@ Expected results are stored in output and graphs folders. A several examples of 
 ![Line grapg of time course](graphs/time_course.pdf)
 ![Heatmap of time course](graphs/heatmap_time.pdf)
 
+[embed]https://github.com/Bio-protocol/Differential-Expression-Analysis/blob/master/graphs/pca.pdf[/embed]
 
 ## License
 It is a free and open source software, licensed under []() [GPLv3](https://github.com/github/choosealicense.com/blob/gh-pages/_licenses/gpl-3.0.txt).
