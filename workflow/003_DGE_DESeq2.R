@@ -9,6 +9,8 @@ library(Glimma)
 library(dplyr)
 library(readr)
 
+### Need output from '002_quality_control.R' file
+source('workflow/002_quality_control.R')
 
 #-------------------------------------
 ##              DESeq2 
@@ -18,7 +20,9 @@ library(readr)
 dds <- DESeq(dds)
 
 ## Plot dispersion estimates
+pdf('dispersion_deseq2.pdf')
 plotDispEsts(dds)
+dev.off()
 
 ## Extracting results
 res <- results(dds, contrast=c("group","mock","hrcc"))
@@ -91,8 +95,10 @@ head(sig)
 ### Visualizing the results
 
 # MA plot
-plotMA(res)
 
+pdf('maplot.pdf')
+plotMA(res)
+dev.off()
 
 # Extract normalization values
 normalized_counts <- data.frame(counts(dds, normalized=T))
@@ -101,6 +107,7 @@ normalized_counts <- data.frame(counts(dds, normalized=T))
 norm_sig<- normalized_counts[match(rownames(sig), rownames(normalized_counts)),]
 
 ### Run pheatmap 
+pdf('heatmap2.pdf')
 pheatmap(norm_sig, 
          cluster_rows = T, 
          show_rownames = F,
@@ -110,13 +117,14 @@ pheatmap(norm_sig,
          scale = "row", 
          fontsize_row = 10, 
          height = 20)
-
+dev.off()
 
 ## Volcano plot
 
 ## Obtain logical vector where TRUE values denote padj values < 0.05 and fold change > 1.5 in either direction
 vol<- diff %>% mutate(threshold = padj < 0.05 & abs(log2FoldChange) >= 0.5)
 
+pdf('Volcanoplot.pdf')
 ggplot(vol) +
   geom_point(aes(x = log2FoldChange, y = -log10(padj), colour = threshold)) +
   ggtitle("overexpression") +
@@ -126,8 +134,7 @@ ggplot(vol) +
   theme(legend.position = "none",
         plot.title = element_text(size = rel(1.5), hjust = 0.5),
         axis.title = element_text(size = rel(1.25)))  
-
-
+dev.off()
 
 
 
