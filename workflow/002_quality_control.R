@@ -9,6 +9,30 @@ library(Glimma)
 library(dplyr)
 library(readr)
 
+#-------------------------------------------------
+## Downloading and importing of RNA-seq count data
+#-------------------------------------------------
+
+# Specify URL where file is stored
+url <- "http://bioinf.wehi.edu.au/edgeR/UserGuideData/arab.rds"
+
+# Specify destination where file should be saved
+setwd("~/path/to/project/DEG/")
+destfile <- "~/path/to/arab.rds"
+
+# Apply download.file function in R
+download.file(url, destfile)
+
+# Import the input r dataset
+raw_counts <- readRDS(destfile)
+
+# Check out the import raw counts matrix
+head(raw_counts)
+
+#Create group vector
+group <- c('mock','mock','mock','hrcc','hrcc','hrcc')
+
+
 #------------------------------------------------------------------
 ##                     Data preprocessing
 #--------------------------------------------------------------------
