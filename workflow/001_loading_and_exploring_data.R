@@ -29,34 +29,37 @@ raw_counts <- readRDS(destfile)
 # Check out the import raw counts matrix
 head(raw_counts)
 
-#Create group vector
+# Create group vector
 group <- c('mock','mock','mock','hrcc','hrcc','hrcc')
 
 #------------------------------------------
 ## Characteristics of RNA-seq count data
 #-----------------------------------------
 
-#istogram for a single sample ('mock1')
+# Histogram for a single sample ('mock1')
+pdf('histogram.pdf')
 ggplot(data.frame(raw_counts)) +
   geom_histogram(aes(x = mock1), stat = "bin", bins = 200) +
   xlab("Raw counts") +
   ylab("Number of genes")
+dev.off()
 
-
-#Mean versus variance
+# Mean versus variance
 # compute a vector of mean values
 mean_counts <- apply(raw_counts[,1:3], 1, mean)
 
-# compute a vector of variance values
+# Compute a vector of variance values
 variance_counts <- apply(raw_counts[,1:3], 1, var)
 
-# plot the relationship between mean and variance
+# Plot the relationship between mean and variance
 df <- data.frame(mean_counts, variance_counts)
+
+pdf('mean_variance.pdf')
 ggplot(df) +
   geom_point(aes(x=mean_counts, y=variance_counts)) + 
   scale_y_log10(limits = c(1,1e9)) +
   scale_x_log10(limits = c(1,1e9)) +
   geom_abline(intercept = 0, slope = 1, color="red")
-
+dev.off()
 
 
