@@ -32,6 +32,8 @@ head(raw_counts)
 #Create group vector
 group <- c('mock','mock','mock','hrcc','hrcc','hrcc')
 
+### or you could directly source the raw_counts from '001_loading_and_exploring_data.R' file
+#source('workflow/001_loading_and_exploring_data.R')
 
 #------------------------------------------------------------------
 ##                     Data preprocessing
@@ -67,13 +69,15 @@ rld <- rlog(dds_norm, blind=TRUE) # blind=TRUE argument is to make sure that the
 #--------------------------------------------------------------------
 
 ### Plot PCA 
+pdf('pca.pdf')
 plotPCA(rld, intgroup="group")
-
+dev.off()
 
 #------------------------------------------------------------------
 ##                    multidimensional scaling (MDS) plot
 #--------------------------------------------------------------------
 
+# An interactive R widget for generating plots is created and exported as HTML documents.
 glimmaMDS(dds)
 
 
@@ -89,8 +93,9 @@ rld_mat <- assay(rld)
 rld_cor <- cor(rld_mat)
 
 ### Plot heatmap using the correlation matrix and the metadata object
+pdf('heatmap1.pdf')
 pheatmap(rld_cor, annotation_col = colData)
-
+dev.off()
 
 
 
