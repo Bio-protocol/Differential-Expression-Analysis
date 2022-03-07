@@ -17,15 +17,15 @@ library(readr)
 url <- "http://bioinf.wehi.edu.au/edgeR/UserGuideData/arab.rds"
 
 # Specify destination where file should be saved
-setwd("~/path/to/project/DEG/")
-destfile <- "~/path/to/arab.rds"
+setwd("~/path/to/project/DGE/")
+destfile <- "input/arab.rds"
 
 # Apply download.file function in R
 download.file(url, destfile)
 
 # Import the input r dataset
 raw_counts <- readRDS(destfile)
-save(raw_counts, file='~/path/to/input/folder/raw_counts.RData')
+save(raw_counts, file='input/raw_counts.RData')
 
 # Check out the import raw counts matrix
 head(raw_counts)
