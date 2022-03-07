@@ -51,7 +51,9 @@ d <- estimateGLMTrendedDisp(d, design, method="power")
 d <- estimateGLMTagwiseDisp(d,design)
 
 # tagwise biological coefficient of variation (square root of dispersions) against log2-CPM
+pdf('plotBCV_edger.pdf')
 plotBCV(d)
+dev.off()
 
 # Fitting the GLM model
 fit <- glmFit(d, design)
@@ -76,9 +78,10 @@ de <- decideTestsDGE(lrt, adjust.method="BH", p.value = 0.05)
 detags <- rownames(d)[as.logical(de)]
 
 # Plotting the log-fold changes of all the genes
+pdf('maplot_edger.pdf')
 plotSmear(lrt, de.tags=detags)
 abline(h = c(-2, 2), col = "blue")
-
+dev.off()
 
 
 
