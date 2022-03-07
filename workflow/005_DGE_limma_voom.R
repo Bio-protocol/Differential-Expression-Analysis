@@ -26,7 +26,9 @@ colnames(design)=levels(factor(group))
 rownames(design)=colnames(raw_counts)
 
 ### Voom transformation
+pdf('voom.pdf')
 v <- voom(dge, design, plot=TRUE, normalize="quantile")
+dev.off()
 
 # Fitting a linear model using weighted least squares for each gene
 fit <- lmFit(v, design)
@@ -53,6 +55,9 @@ adj.p.cutoff <- 0.05
 limma_sig <- limma_diff[which(limma_diff$adj.P.Val < adj.p.cutoff),]
 limma_sig<- limma_sig[order(limma_sig$adj.P.Val), ]
 
+write.csv(limma_diff, 'limma_allgenes.csv', row.names = T)
+write.csv(limma_sig, 'limma_siggenes.csv', row.names = T)
 
+pdf('plotMD_limma.pdf')
 plotMD(efit, column=1, status=dt[,1], main=colnames(efit)[1], xlim=c(-8,13))
-
+dev.off()
