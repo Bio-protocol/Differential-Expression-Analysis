@@ -37,12 +37,8 @@ Here we demonstrate a fundamental time course analysis with an Arabidopsis datas
 
 Note: Users need to modify a few path variables before running the code.
 ```
-#Line 20-21
+#Line 20
 setwd("~/path/to/project/DGE")
-destfile <- "~/path/to/arab.rds"
-
-#Line 28
-save(raw_counts, file='~/path/to/input/folder/raw_counts.RData')
 ```
 Run 001_loading_and_exploring_data code:
 ```
