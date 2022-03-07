@@ -10,6 +10,7 @@ library(dplyr)
 library(readr)
 
 ## load raw_counts data, ignore this step if you has run 001_loading_and_exploring_data file.
+setwd("~/path/to/project/DEG/")
 load('input/raw_counts.RData')
 group <- as.factor(c('mock','mock','mock','hrcc','hrcc','hrcc'))
 
