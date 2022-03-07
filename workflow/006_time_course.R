@@ -12,6 +12,7 @@ library(readr)
 #-------------------------------------
 ##              Time course
 #----------------------------------------
+setwd("~/path/to/project/DGE/")
 
 # Loading the data
 load("input/arab_time.RData")
