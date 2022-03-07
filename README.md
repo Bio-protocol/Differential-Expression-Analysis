@@ -35,36 +35,71 @@ Here we demonstrate a fundamental time course analysis with an Arabidopsis datas
 
 #### Step 1: Download and explore RNA-seq data
 
+Note: Users need to modify a few path variables before running the code.
+```
+#Line 20-21
+setwd("~/path/to/project/DGE")
+destfile <- "~/path/to/arab.rds"
+
+#Line 28
+save(raw_counts, file='~/path/to/input/folder/raw_counts.RData')
+```
+Run 001_loading_and_exploring_data code:
 ```
 source('workflow/001_loading_and_exploring_data.R')
 ```
 
 #### Step 2: Quality control
-
+Note: Users need to modify a few path variables before running the code.
+```
+#Line 13
+setwd("~/path/to/project/DGE")
+```
+Run 002_quality_control code:
 ```
 source('workflow/002_quality_control.R')
 ```
 
 #### Step 3: DGE analysis--DESeq2
-
+Note: Users need to modify a few path variables before running the code.
+```
+#Line 13
+setwd("~/path/to/project/DGE/")
+```
+Run 003_DGE_DESeq2 code:
 ```
 source('workflow/003_DGE_DESeq2.R')
 ```
 
 #### Step 4: DGE analysis--edgeR
-
+Note: Users need to modify a few path variables before running the code.
+```
+#Line 13
+setwd("~/path/to/project/DGE/")
+```
+Run 004_DGE_edgeR code:
 ```
 source('workflow/004_DGE_edgeR.R')
 ```
 
 #### Step 5: DGE analysis--limma voom
-
+Note: Users need to modify a few path variables before running the code.
+```
+#Line 13
+setwd("~/path/to/project/DGE/")
+```
+Run 005_DGE_limma_voom code:
 ```
 source('workflow/005_DGE_limma_voom.R')
 ```
 
 #### Step 6: Time course analysis
-
+Note: Users need to modify a few path variables before running the code.
+```
+#Line 15
+setwd("~/path/to/project/DGE/")
+```
+Run 006_time_course code:
 ```
 source('workflow/006_time_course.R')
 ```
