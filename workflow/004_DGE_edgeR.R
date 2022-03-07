@@ -83,5 +83,6 @@ plotSmear(lrt, de.tags=detags)
 abline(h = c(-2, 2), col = "blue")
 dev.off()
 
-
+write.csv(edgeR_diff, 'edgeR_allgenes.csv', row.names = T)
+write.csv(edgeR_sig, 'edgeR_siggenes.csv', row.names = T)
 
