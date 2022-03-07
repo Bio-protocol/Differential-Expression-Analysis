@@ -101,7 +101,7 @@ source('workflow/006_time_course.R')
 ```
 ## Expected results
 
-Note: Figures generated during DGE analysis (like PCA, heatmap, MA plot, e.g.) and significant gene lists are stored in the graphs and output folder. Since the graphs are saved as 'pdf' files, they are not supported to display in README. Please go to the 'graphs' folder for checking.
+Note: Figures generated during DGE analysis (like PCA, heatmap, MA plot, e.g.) and significant gene lists are stored in the graphs and output folder. Since the graphs are saved as 'pdf' files, they are not supported to display in README. Please go through the 'graphs' folder and the protocol for detailed checking.
 
 Visualization of DGE results using the three selected DGE tools provides valuable insights into their generated results. As seen in Figure below (A, B), the three methods detect similar numbers of DE genes, and most of them are identical. When we set the FDR cutoff to 0.05, they would behave differently. DESeq2 detects the most DE genes, while the limma voom detects the least. However, the significant genes detected by limma voom could almost be found by edgeR and DESeq2 (Figure C). Then we could infer that limma voom is more critical than the other two when calling significant DE genes.
 
