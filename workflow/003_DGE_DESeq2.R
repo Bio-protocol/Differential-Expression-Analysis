@@ -92,6 +92,9 @@ dim(diff)
 dim(sig)
 head(sig)
 
+write.csv(diff, 'deseq2_allgenes.csv', row.names = T)
+write.csv(sig, 'deseq2_siggenes.csv', row.names = T)
+
 ### Visualizing the results
 
 # MA plot
