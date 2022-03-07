@@ -101,9 +101,14 @@ source('workflow/006_time_course.R')
 ```
 ## Expected results
 
-Expected results are stored in output and graphs folders. A several examples of outputs:
+Note: Figures generated during DGE analysis (like PCA, heatmap, MA plot, e.g.) and significant gene lists are stored in the graphs and output folder. Since the graphs are saved as 'pdf' files, they are not supported to display in README. Please go to the 'graphs' folder for checking.
+
+Visualization of DGE results using the three selected DGE tools provides valuable insights into their generated results. As seen in Figure below (A, B), the three methods detect similar numbers of DE genes, and most of them are identical. When we set the FDR cutoff to 0.05, they would behave differently. DESeq2 detects the most DE genes, while the limma voom detects the least. However, the significant genes detected by limma voom could almost be found by edgeR and DESeq2 (Figure C). Then we could infer that limma voom is more critical than the other two when calling significant DE genes.
 
 ![comparison of genes](graphs/15abc.png)
+
+Let us look at the detected fold changes from all three methods. Here, the genes are colored differently to label which methods find them significant. Suppose that a gene is colored yellow-wish green means both methods find it. Matching the results in Figure above, the outputs of DESeq2 and edgeR are very close indeed since their fold changes correlate much better than the other two methods (Figure below). All three methods behaved well in finding the significant DE genes, while DESeq2 caught more candidates than the other two. It turns out that these genes only detected by DESeq2 have pretty low counts. The DESeq2 goes through the logic of independent filtering within results() to save from multiple test corrections on genes with no power, showing that the likelihood of a gene being significantly differentially expressed is related to how strongly it is expressed. It advocates discarding extremely lowly expressed genes because the differential expression is likely not statistically detectable, so it is unnecessary to pre-filter low count genes as recommended in the vignette. However, in edgeR and limma voom, we performed a minimal count-based pre-filtering to keep only rows with at least a CPM of ten for at least two samples total. After filtering, the candidate genes with apparently moderate fold changes detected by DESeq2 are removed in edgeR and limma voom. We suggest users try different methods with variable parameters and then choose the most suitable one.
+
 ![more comparison](graphs/abc.png)
 
 ## License
