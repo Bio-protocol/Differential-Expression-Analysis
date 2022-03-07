@@ -39,9 +39,11 @@ arab <- plotCounts(ddsTC, which.min(resTC$padj),
 arab$hour <- as.numeric(as.character(arab$hour))
 
 # Plotting the counts for the groups over time
+pdf('time_course.pdf')
 ggplot(arab, aes(x = hour, y = count, color = strain, group = strain)) + 
   geom_point() + stat_summary(fun.y=mean, geom="line") +
   scale_y_log10()
+dev.off()
 
 # show some results
 resultsNames(ddsTC)
@@ -62,5 +64,7 @@ mat[mat < -thr] <- -thr
 mat[mat > thr] <- thr
 
 # Plotting
+pdf('heatmap_time.pdf')
 pheatmap(mat, breaks=seq(from=-thr, to=thr, length=101),
          cluster_col=FALSE) 
+dev.off()
