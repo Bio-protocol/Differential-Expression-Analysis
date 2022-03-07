@@ -25,6 +25,7 @@ download.file(url, destfile)
 
 # Import the input r dataset
 raw_counts <- readRDS(destfile)
+save(raw_counts, file='~/path/to/input/folder/raw_counts.RData')
 
 # Check out the import raw counts matrix
 head(raw_counts)
@@ -37,7 +38,7 @@ group <- c('mock','mock','mock','hrcc','hrcc','hrcc')
 #-----------------------------------------
 
 # Histogram for a single sample ('mock1')
-pdf('histogram.pdf')
+pdf('graphs/histogram.pdf')
 ggplot(data.frame(raw_counts)) +
   geom_histogram(aes(x = mock1), stat = "bin", bins = 200) +
   xlab("Raw counts") +
@@ -54,9 +55,9 @@ variance_counts <- apply(raw_counts[,1:3], 1, var)
 # Plot the relationship between mean and variance
 df <- data.frame(mean_counts, variance_counts)
 
-pdf('mean_variance.pdf')
+pdf('graphs/mean_variance.pdf')
 ggplot(df) +
-  geom_point(aes(x=mean_counts, y=variance_counts)) + 
+  geom_point(aes(x=(mean_counts+1), y=(variance_counts+1))) + 
   scale_y_log10(limits = c(1,1e9)) +
   scale_x_log10(limits = c(1,1e9)) +
   geom_abline(intercept = 0, slope = 1, color="red")

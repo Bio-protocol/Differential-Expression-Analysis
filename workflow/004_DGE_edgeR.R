@@ -9,13 +9,16 @@ library(Glimma)
 library(dplyr)
 library(readr)
 
+## load raw_counts data, ignore this step if you has run 001_loading_and_exploring_data file.
+load('input/raw_counts.RData')
+group <- as.factor(c('mock','mock','mock','hrcc','hrcc','hrcc'))
 
 #-------------------------------------
 ##              edgeR
 #----------------------------------------
 
 # Create DEGList object
-d.full <- DGEList(counts= raw_counts,group= factor(group))
+d.full <- DGEList(counts= raw_counts,group= group)
 head(d.full$counts)
 
 # total gene counts per sample
@@ -51,7 +54,7 @@ d <- estimateGLMTrendedDisp(d, design, method="power")
 d <- estimateGLMTagwiseDisp(d,design)
 
 # tagwise biological coefficient of variation (square root of dispersions) against log2-CPM
-pdf('plotBCV_edger.pdf')
+pdf('graphs/plotBCV_edger.pdf')
 plotBCV(d)
 dev.off()
 
@@ -78,11 +81,11 @@ de <- decideTestsDGE(lrt, adjust.method="BH", p.value = 0.05)
 detags <- rownames(d)[as.logical(de)]
 
 # Plotting the log-fold changes of all the genes
-pdf('maplot_edger.pdf')
+pdf('graphs/maplot_edger.pdf')
 plotSmear(lrt, de.tags=detags)
 abline(h = c(-2, 2), col = "blue")
 dev.off()
 
-write.csv(edgeR_diff, 'edgeR_allgenes.csv', row.names = T)
-write.csv(edgeR_sig, 'edgeR_siggenes.csv', row.names = T)
+write.csv(edgeR_diff, 'output/edgeR_allgenes.csv', row.names = T)
+write.csv(edgeR_sig, 'output/edgeR_siggenes.csv', row.names = T)
 

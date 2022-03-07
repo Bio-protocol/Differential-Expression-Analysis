@@ -9,6 +9,9 @@ library(Glimma)
 library(dplyr)
 library(readr)
 
+## load raw_counts data, ignore this step if you has run 001_loading_and_exploring_data file.
+load('input/raw_counts.RData')
+group <- as.factor(c('mock','mock','mock','hrcc','hrcc','hrcc'))
 
 #-------------------------------------
 ##              limma voom
@@ -26,7 +29,7 @@ colnames(design)=levels(factor(group))
 rownames(design)=colnames(raw_counts)
 
 ### Voom transformation
-pdf('voom.pdf')
+pdf('graphs/voom.pdf')
 v <- voom(dge, design, plot=TRUE, normalize="quantile")
 dev.off()
 
@@ -55,9 +58,9 @@ adj.p.cutoff <- 0.05
 limma_sig <- limma_diff[which(limma_diff$adj.P.Val < adj.p.cutoff),]
 limma_sig<- limma_sig[order(limma_sig$adj.P.Val), ]
 
-write.csv(limma_diff, 'limma_allgenes.csv', row.names = T)
-write.csv(limma_sig, 'limma_siggenes.csv', row.names = T)
+write.csv(limma_diff, 'output/limma_allgenes.csv', row.names = T)
+write.csv(limma_sig, 'output/limma_siggenes.csv', row.names = T)
 
-pdf('plotMD_limma.pdf')
+pdf('graphs/plotMD_limma.pdf')
 plotMD(efit, column=1, status=dt[,1], main=colnames(efit)[1], xlim=c(-8,13))
 dev.off()

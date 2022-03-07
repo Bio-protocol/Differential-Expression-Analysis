@@ -9,8 +9,24 @@ library(Glimma)
 library(dplyr)
 library(readr)
 
-### Need output from '002_quality_control.R' file
-source('workflow/002_quality_control.R')
+## load raw_counts data, ignore this step if you has run 001_loading_and_exploring_data file.
+load('input/raw_counts.RData')
+group <- as.factor(c('mock','mock','mock','hrcc','hrcc','hrcc'))
+
+#------------------------------------------------------------------
+##                     Data preprocessing
+#--------------------------------------------------------------------
+
+# No preliminary normalization of this data is needed in DEseq2 
+colData <- data.frame(row.names=colnames(raw_counts), group= group)
+
+# Create DESeq object
+dds <- DESeqDataSetFromMatrix(countData = raw_counts,
+                              colData = colData,
+                              design = ~ group)
+
+# Retrieve the original count matrix
+head(counts(dds))
 
 #-------------------------------------
 ##              DESeq2 
@@ -20,7 +36,7 @@ source('workflow/002_quality_control.R')
 dds <- DESeq(dds)
 
 ## Plot dispersion estimates
-pdf('dispersion_deseq2.pdf')
+pdf('graphs/dispersion_deseq2.pdf')
 plotDispEsts(dds)
 dev.off()
 
@@ -92,14 +108,14 @@ dim(diff)
 dim(sig)
 head(sig)
 
-write.csv(diff, 'deseq2_allgenes.csv', row.names = T)
-write.csv(sig, 'deseq2_siggenes.csv', row.names = T)
+write.csv(diff, 'output/deseq2_allgenes.csv', row.names = T)
+write.csv(sig, 'output/deseq2_siggenes.csv', row.names = T)
 
 ### Visualizing the results
 
 # MA plot
 
-pdf('maplot.pdf')
+pdf('graphs/maplot.pdf')
 plotMA(res)
 dev.off()
 
@@ -110,7 +126,7 @@ normalized_counts <- data.frame(counts(dds, normalized=T))
 norm_sig<- normalized_counts[match(rownames(sig), rownames(normalized_counts)),]
 
 ### Run pheatmap 
-pdf('heatmap2.pdf')
+pdf('graphs/heatmap2.pdf')
 pheatmap(norm_sig, 
          cluster_rows = T, 
          show_rownames = F,
@@ -127,7 +143,7 @@ dev.off()
 ## Obtain logical vector where TRUE values denote padj values < 0.05 and fold change > 1.5 in either direction
 vol<- diff %>% mutate(threshold = padj < 0.05 & abs(log2FoldChange) >= 0.5)
 
-pdf('Volcanoplot.pdf')
+pdf('graphs/Volcanoplot.pdf')
 ggplot(vol) +
   geom_point(aes(x = log2FoldChange, y = -log10(padj), colour = threshold)) +
   ggtitle("overexpression") +

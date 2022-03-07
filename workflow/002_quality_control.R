@@ -9,38 +9,17 @@ library(Glimma)
 library(dplyr)
 library(readr)
 
-#-------------------------------------------------
-## Downloading and importing of RNA-seq count data
-#-------------------------------------------------
+## load raw_counts data, ignore this step if you has run 001_loading_and_exploring_data file.
+load('input/raw_counts.RData')
+group <- as.factor(c('mock','mock','mock','hrcc','hrcc','hrcc'))
 
-# Specify URL where file is stored
-url <- "http://bioinf.wehi.edu.au/edgeR/UserGuideData/arab.rds"
-
-# Specify destination where file should be saved
-setwd("~/path/to/project/DEG/")
-destfile <- "~/path/to/arab.rds"
-
-# Apply download.file function in R
-download.file(url, destfile)
-
-# Import the input r dataset
-raw_counts <- readRDS(destfile)
-
-# Check out the import raw counts matrix
-head(raw_counts)
-
-#Create group vector
-group <- c('mock','mock','mock','hrcc','hrcc','hrcc')
-
-### or you could directly source the raw_counts from '001_loading_and_exploring_data.R' file
-#source('workflow/001_loading_and_exploring_data.R')
 
 #------------------------------------------------------------------
 ##                     Data preprocessing
 #--------------------------------------------------------------------
 
 # No preliminary normalization of this data is needed in DEseq2 
-colData <- data.frame(row.names=colnames(raw_counts), group=group)
+colData <- data.frame(row.names=colnames(raw_counts), group= group)
 
 # Create DESeq object
 dds <- DESeqDataSetFromMatrix(countData = raw_counts,
@@ -69,7 +48,7 @@ rld <- rlog(dds_norm, blind=TRUE) # blind=TRUE argument is to make sure that the
 #--------------------------------------------------------------------
 
 ### Plot PCA 
-pdf('pca.pdf')
+pdf('graphs/pca.pdf')
 plotPCA(rld, intgroup="group")
 dev.off()
 
@@ -79,7 +58,6 @@ dev.off()
 
 # An interactive R widget for generating plots is created and exported as HTML documents.
 glimmaMDS(dds)
-
 
 #------------------------------------------------------------------
 ##                    Hierarchical Clustering Heatmap
@@ -93,7 +71,7 @@ rld_mat <- assay(rld)
 rld_cor <- cor(rld_mat)
 
 ### Plot heatmap using the correlation matrix and the metadata object
-pdf('heatmap1.pdf')
+pdf('graphs/heatmap1.pdf')
 pheatmap(rld_cor, annotation_col = colData)
 dev.off()
 
